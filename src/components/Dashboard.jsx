@@ -93,7 +93,6 @@ export default function Dashboard() {
           <table className="reg-table">
             <thead>
               <tr>
-                <th>#</th>
                 <th>First Name</th>
                 <th>Last Name</th>
               </tr>
@@ -108,7 +107,6 @@ export default function Dashboard() {
               ) : (
                 filtered.map((r, i) => (
                   <tr key={r.uid || i}>
-                    <td>{i + 1}</td>
                     <td>{r.firstName}</td>
                     <td>{r.lastName}</td>
                   </tr>
