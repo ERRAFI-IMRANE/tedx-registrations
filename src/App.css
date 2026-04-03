@@ -162,3 +162,78 @@ body {
   color: #e62b1e;
   font-size: 0.85rem;
 }
+
+
+/* Navbar */
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 40px 0 20px;
+}
+
+.search-input {
+  flex: 1;
+  padding: 12px 20px;
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.search-input:focus {
+  border-color: #e62b1e;
+}
+
+.result-count {
+  color: #888;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+/* Table */
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: 16px;
+  border: 1px solid #2a2a2a;
+}
+
+.reg-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.reg-table th {
+  background: #1a1a1a;
+  color: #888;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 14px 20px;
+  text-align: left;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+.reg-table td {
+  padding: 14px 20px;
+  border-bottom: 1px solid #1e1e1e;
+  color: #ddd;
+}
+
+.reg-table tbody tr:hover {
+  background: #1a1a1a;
+}
+
+.reg-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.no-results {
+  text-align: center;
+  color: #555;
+  padding: 40px !important;
+}
