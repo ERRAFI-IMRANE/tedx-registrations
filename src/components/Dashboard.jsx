@@ -16,7 +16,17 @@ export default function Dashboard() {
       (snapshot) => {
         const data = snapshot.val();
         const list = data ? Object.values(data) : [];
-        setRegistrations(list);
+
+        // ✅ Remove duplicates based on firstName + lastName
+        const seen = new Set();
+        const unique = list.filter((r) => {
+          const key = `${r.firstName?.toLowerCase()}_${r.lastName?.toLowerCase()}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+
+        setRegistrations(unique);
         setLastUpdated(new Date().toLocaleTimeString());
         setLoading(false);
       },
@@ -72,7 +82,9 @@ export default function Dashboard() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <span className="result-count">{filtered.length} result{filtered.length !== 1 ? "s" : ""}</span>
+        <span className="result-count">
+          {filtered.length} result{filtered.length !== 1 ? "s" : ""}
+        </span>
       </div>
 
       {/* Table */}
@@ -84,15 +96,14 @@ export default function Dashboard() {
                 <th>#</th>
                 <th>First Name</th>
                 <th>Last Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Registered At</th>
               </tr>
             </thead>
             <tbody>
               {filtered.length === 0 ? (
                 <tr>
-                  <td colSpan="6" className="no-results">No results found</td>
+                  <td colSpan="4" className="no-results">
+                    No results found
+                  </td>
                 </tr>
               ) : (
                 filtered.map((r, i) => (
@@ -100,9 +111,6 @@ export default function Dashboard() {
                     <td>{i + 1}</td>
                     <td>{r.firstName}</td>
                     <td>{r.lastName}</td>
-                    <td>{r.email}</td>
-                    <td>{r.phone}</td>
-                    <td>{new Date(r.registeredAt).toLocaleString()}</td>
                   </tr>
                 ))
               )}
